@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +69,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+=======
+## React Redux UI Kit
+
+A Simple React Redux E-Commerce Application using Fake Store API and UI Kit Design.
+
+## Thanks
+
+- [Fake Store API](https://github.com/keikaavousi/fake-store-api)
+- [UI Kit](https://github.com/uikit/uikit)
+>>>>>>> 3e569e073795b561988872ba9018ed1cf8922007
