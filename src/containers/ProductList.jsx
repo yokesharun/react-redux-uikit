@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setProducts } from "../redux/actions/productActions";
 
 const ProductList = () => {
-  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const productsData = useSelector((state) => state.allProducts);
 
   const fetchProducts = async () => {
     await fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
-      .then((json) => setProducts(json));
+      .then((json) => dispatch(setProducts(json)));
   };
 
   useEffect(() => {
@@ -20,7 +23,7 @@ const ProductList = () => {
   };
 
   const constructList = () => {
-    return products.map((i) => (
+    return productsData.products.map((i) => (
       <div className="col-md-3 main-column">
         <div className="card">
           <img
@@ -51,7 +54,7 @@ const ProductList = () => {
 
   return (
     <>
-      {products.length === 0 ? (
+      {productsData.length === 0 ? (
         <div class="spinner-border" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
