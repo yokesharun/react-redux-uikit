@@ -1,6 +1,6 @@
 ## A Simple App using React, Redux and UI Kit
 
-A Simple React Redux E-Commerce Application using Fake Store API and UI Kit Design.
+A Simple React Redux E-Commerce Application using Fake Store API and Bootstrap Design.
 
 ## Thanks
 
