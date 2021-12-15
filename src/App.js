@@ -12,8 +12,8 @@ function App() {
         <div class="container">
           <div class="row main-column">
             <Routes>
-            <Route path="/" exact element={<ProductList/>}/>
-              <Route path="/product/:productId" element={<Product/>}/>
+              <Route path="/" exact element={<ProductList />} />
+              <Route path="/product/:productId" element={<Product />} />
             </Routes>
           </div>
         </div>

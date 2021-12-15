@@ -1,23 +1,63 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProductList = () => {
-  return (
-    <>
-      <div class="col-md-3 main-column">
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1601983038860-17f26c8c2d9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
+  const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
+
+  const fetchProducts = async () => {
+    await fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((json) => setProducts(json));
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const redirectToProduct = (e, productId) => {
+    navigate(`/product/${productId}`);
+  };
+
+  const constructList = () => {
+    return products.map((i) => (
+      <div className="col-md-3 main-column">
+        <div className="card">
+          <img
+            src={i.image}
+            className="card-img-top product-image"
+            alt={i.title}
+          />
+          <div className="card-body">
+            <p>
+              <span class="badge bg-secondary">{i.category}</span>
             </p>
-            <a href="#" class="btn btn-primary">
-              Price: $123
-            </a>
+            <h6 className="card-title">{i.title}</h6>
+            {/* <p className="card-text">
+        {i.description.substring(0,50)+"..."}
+        </p> */}
+            <button
+              type="button"
+              className="btn btn-dark"
+              onClick={(e) => redirectToProduct(e, i.id)}
+            >
+              Buy now at ${i.price}
+            </button>
           </div>
         </div>
       </div>
+    ));
+  };
+
+  return (
+    <>
+      {products.length === 0 ? (
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      ) : (
+        constructList()
+      )}
     </>
   );
 };

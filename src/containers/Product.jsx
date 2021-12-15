@@ -1,27 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 const Product = () => {
+  const [product, setProduct] = useState({});
+  const params = useParams();
+  const navigate = useNavigate();
+
+  const fetchProducts = async () => {
+    await fetch("https://fakestoreapi.com/products/" + params.productId)
+      .then((res) => res.json())
+      .then((json) => setProduct(json));
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   return (
     <>
-      <div class="col-md-6 main-column">
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1601983038860-17f26c8c2d9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" class="card-img-top" alt="..." />
-        </div>
+    <div>
+      <button type="button" className="btn btn-dark" onClick={() => navigate('/')}>
+       Back
+      </button>
       </div>
-      <div class="col-md-6 main-column">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="#" class="btn btn-primary">
-              Price: $123
-            </a>
+      {Object.keys(product).length === 0 ? (
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      ) : (
+        <>
+          <div class="col-md-6 main-column">
+            <div class="card">
+              <img
+                src={product.image}
+                class="card-img-top product-single-image"
+                alt={product.title}
+              />
+            </div>
           </div>
-        </div>
-      </div>
+          <div class="col-md-6 main-column">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{product.title}</h5>
+                <p class="card-text">{product.description}</p>
+                <h4>${product.price}</h4>
+                <button type="button" class="btn btn-dark">
+                  Buy now
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };
