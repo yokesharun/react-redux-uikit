@@ -5,4 +5,4 @@ A Simple React Redux E-Commerce Application using Fake Store API and UI Kit Desi
 ## Thanks
 
 - [Fake Store API](https://github.com/keikaavousi/fake-store-api)
-- [UI Kit](https://github.com/uikit/uikit)
+- [Bootstrap](https://github.com/twbs/bootstrap)
