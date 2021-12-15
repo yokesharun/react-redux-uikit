@@ -1,8 +1,19 @@
+import Navigation from "./components/Navigation";
+import ProductList from "./containers/ProductList";
+import Product from "./containers/Product";
+import './index.css';
+
 function App() {
   return (
-    <div className="App">
-        Hello
-    </div>
+    <>
+      <Navigation />
+      <div class="container">
+        <div class="row main-column">
+          <ProductList />
+          <Product />
+        </div>
+      </div>
+    </>
   );
 }
 
