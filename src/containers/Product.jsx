@@ -28,7 +28,7 @@ const Product = () => {
         <button
           type="button"
           className="btn btn-dark"
-          onClick={() => navigate("/")}
+          onClick={() => navigate(process.env.PUBLIC_URL + '/')}
         >
           Back
         </button>

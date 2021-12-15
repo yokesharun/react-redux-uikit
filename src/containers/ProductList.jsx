@@ -19,7 +19,7 @@ const ProductList = () => {
   }, []);
 
   const redirectToProduct = (e, productId) => {
-    navigate(`/product/${productId}`);
+    navigate(process.env.PUBLIC_URL + '/product/'+ productId);
   };
 
   const constructList = () => {
